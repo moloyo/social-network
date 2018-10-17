@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Register</div>
+        <div class="panel-body">
+          <form class="form-horizontal" #form="ngForm" novalidate (ngSubmit)="onSubmit(form)">
+            <ul class="list-group">
+              <li class="list-group-item text-danger" *ngIf="userName.errors?.required && userName.touched">The Name is required.</li>
+              <li class="list-group-item text-danger" *ngIf="userEmail.errors?.required && userEmail.touched">The Email is required.</li>
+              <li class="list-group-item text-danger" *ngIf="userPassword.errors?.required && userPassword.touched">The Password is required.</li>
+              <li class="list-group-item text-danger" *ngIf="userPassword.errors?.minlength && userPassword.touched">The Password must 6 characters long.</li>
+            </ul>
+            <div class="form-group">            
+              
+              <label for="name" class="control-label col-md-4">Full name</label>
+              
+              <div class="col-md-6">
+                <input ngModel name="name" id="name" #userName="ngModel" type="text" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="control-label col-md-4">E-mail Address</label>
+
+              <div class="col-md-6">
+                <input ngModel name="email" id="email" #userEmail="ngModel" type="email" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-md-4 control-label">Password</label>
+
+              <div class="col-md-6">
+                <input ngModel name="password" type="password" #userPassword="ngModel" class="form-control" required minlength="6">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-8 col-md-offset-4">
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

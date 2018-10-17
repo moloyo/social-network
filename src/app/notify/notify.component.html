@@ -1,0 +1,3 @@
+<div class="alert" *ngIf="message" [ngClass]="{'alert-success' : message.type == 'success', 'alert-danger' : message.type == 'error'}">
+  <p class="text-center">{{message.detail}}</p>
+</div>
