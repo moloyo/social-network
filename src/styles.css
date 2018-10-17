@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100vh;
+}
+.container {
+    padding: 10px;
+    background-image: url('wp1822732.jpg');
+    background-size: cover;
+    margin: 0;
+    height: 100%;
+    max-width: 100% !important;
+}
+
+.panel-heading {
+    font-size: 20px;
+}
+
+.panel-default {
+    border: 2px #f8f9fa solid;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+    padding: 20px 20px;
+}

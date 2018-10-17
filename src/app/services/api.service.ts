@@ -20,11 +20,15 @@ export class ApiService {
     });
   }
 
-  post(url: string, body: any): Observable<UserData> {
-    return this.http.post<UserData>(`${CONFIG.API_URL}/${url}`, body);
+  post<T>(url: string, body: any): Observable<T> {
+    return this.http.post<T>(`${CONFIG.API_URL}/${url}`, body);
   }
 
   get<T>(url: string): Observable<T> {
     return this.http.get<T>(`${CONFIG.API_URL}/${url}`, { headers: this.headers });
+  }
+
+  put<T>(url: string, body: any) {
+    return this.http.put<T>(`${CONFIG.API_URL}/${url}`, body, { headers: this.headers });
   }
 }

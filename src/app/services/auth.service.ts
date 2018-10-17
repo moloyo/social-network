@@ -4,21 +4,23 @@ import { ApiService } from './api.service';
 import { UserData } from '../models/user-data';
 import { NotifyService } from './notify.service';
 import { User } from '../models/user';
-import { NgProgress } from 'ngx-progressbar';
+import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
 
 @Injectable()
 
 export class AuthService {
+    progressRef: NgProgressRef;
 
     constructor (private readonly apiService: ApiService,
                  private readonly router: Router,
                  private readonly notifyService: NotifyService,
-                 private readonly ngProgress: NgProgress) {
+                 private readonly progress: NgProgress) {
+        this.progressRef = progress.ref();
     }
 
     register(name: string, email: string, password: string): Promise<UserData | void> {
         console.log({ name: name, email: email, password: password });
-        return this.apiService.post('register', { name: name, email: email, password: password })
+        return this.apiService.post<UserData>('register', { name: name, email: email, password: password })
         .toPromise()
         .then((response) => {
             const token = response.token;
@@ -38,7 +40,7 @@ export class AuthService {
     }
 
     login(email: string, password: string): Promise<UserData> {
-        this.ngProgress.start();
+        this.progressRef.start();
         const token = 'sefsekfmsmeklmseklfmseklfmseklmfksefmksemfksefmksefmsekfmseklf';
         const user = {
             id: 123414,
@@ -48,12 +50,15 @@ export class AuthService {
             joined: '2017-04-11 01:17:54',
         };
 
+        setTimeout(() => this.progressRef.complete(), 500);
+
         return Promise.resolve(new UserData(token, user));
 
         // return this.apiService.post('authenticate', { email: email, password: password })
         // .toPromise()
         // .then((response) => {
         //     console.log('login succcess');
+        //     this.progressRef.complete()
 
         //     const token = response.json().token;
         //     const user = response.json().data;
@@ -85,6 +90,7 @@ export class AuthService {
     }
 
     getAuthUserId(): number {
-        return JSON.parse(localStorage.getItem('user')).id;
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user ? user.id : undefined;
     }
 }

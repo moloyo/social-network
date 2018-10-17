@@ -7,7 +7,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navigation-panel.component.css']
 })
 export class NavigationPanelComponent {
-  constructor (private readonly authService: AuthService) {}
+
+  get idUser(): number {
+    return this.authService.getAuthUserId();
+  }
+
+  constructor (private readonly authService: AuthService) {
+    this.authService.getAuthUserId();
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();

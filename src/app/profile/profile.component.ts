@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,15 @@ export class ProfileComponent implements OnInit {
   id: number;
   user: User;
 
-  constructor(private router: ActivatedRoute, private readonly userService: UserService) { }
+  get isAuthUserId(): boolean {
+    return this.id === this.authService.getAuthUserId();
+  }
+
+  constructor(private router: ActivatedRoute,
+              private readonly userService: UserService,
+              private readonly authService: AuthService) {
+                this.userService.userProfileUpdated.subscribe((user) => this.user = user);
+              }
 
   ngOnInit() {
     this.router.params.subscribe((params) => {

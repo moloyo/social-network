@@ -19,7 +19,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './services/user.service';
 import { PrettyDatePipe } from './pipes/pretty-date.pipe';
-import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { WallComponent } from './profile/wall/wall.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { FollowComponent } from './profile/follow/follow.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +33,17 @@ import { NgProgressModule } from 'ngx-progressbar';
     NotifyComponent,
     NavigationPanelComponent,
     ProfileComponent,
-    PrettyDatePipe
+    PrettyDatePipe,
+    WallComponent,
+    EditProfileComponent,
+    FollowComponent
   ],
   imports: [
     NgbModule,
+    NgProgressModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgProgressModule,
     RouterModule.forRoot(Routes)
   ],
   providers: [
