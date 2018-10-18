@@ -11,9 +11,9 @@ export class PostService {
 
   getLatest(): Promise<Post[]> {
     return Promise.resolve( [
-      new Post('primero', 'primero contenido', { id: 1, name: 'pepe', email: 'aeawea', avatar: null, joined: null }),
-      new Post('segundo', 'segundo contenido', { id: 1, name: 'pepe', email: 'aeawea', avatar: null, joined: null }),
-      new Post('tercero', 'tercero contenido', { id: 1, name: 'pepe', email: 'aeawea', avatar: null, joined: null })
+      new Post('primero', 'primero contenido'),
+      new Post('segundo', 'segundo contenido'),
+      new Post('tercero', 'tercero contenido')
     ]);
     // return this.apiService.get<Post[]>('posts/latest').toPromise();
   }

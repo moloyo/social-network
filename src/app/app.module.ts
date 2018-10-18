@@ -26,7 +26,7 @@ import { FollowComponent } from './profile/follow/follow.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { LatestPostsComponent } from './post/latest-posts/latest-posts.component';
 import { PostService } from './services/post.service';
-import { TestModule } from './test.module';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { TestModule } from './test.module';
     EditProfileComponent,
     FollowComponent,
     CreatePostComponent,
-    LatestPostsComponent
+    LatestPostsComponent,
+    PostComponent
   ],
   imports: [
     ReactiveFormsModule,

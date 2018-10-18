@@ -5,10 +5,7 @@
         Latest Posts
       </a>
       <div class="panel-body">
-        <article class="post" *ngFor="let post of latestPosts">
-          <header> {{ post.title }} by {{ post.author?.name }} </header>
-          <p> {{ post.content }} </p>
-        </article>
+        <app-post *ngFor="let post of latestPosts" [post]="post"></app-post>
       </div>
     </div>
   </div>
