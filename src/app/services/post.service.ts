@@ -18,7 +18,8 @@ export class PostService {
     // return this.apiService.get<Post[]>('posts/latest').toPromise();
   }
 
-  createPost(post: Post) {
-    console.log(post);
+  createPost(post: Post): Promise<Post> {
+    return Promise.resolve(post);
+    // return this.apiService.post<Post>('posts', post).toPromise();
   }
 }

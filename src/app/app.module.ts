@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -26,6 +26,7 @@ import { FollowComponent } from './profile/follow/follow.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { LatestPostsComponent } from './post/latest-posts/latest-posts.component';
 import { PostService } from './services/post.service';
+import { TestModule } from './test.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PostService } from './services/post.service';
     LatestPostsComponent
   ],
   imports: [
+    ReactiveFormsModule,
     NgbModule,
     NgProgressModule,
     BrowserModule,

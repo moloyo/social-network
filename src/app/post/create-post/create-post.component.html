@@ -4,17 +4,28 @@
         Create Post
       </a>
       <div class="panel-body" *ngIf="!isCollapsed">
-        <form #form="ngForm" (ngSubmit)="createPost(form)" novalidate>
+        <form [formGroup]="postForm" (ngSubmit)="createPost()">
+          <ul>
+            <li class="text-danger" *ngIf="postForm.get('title').hasError('required') && postForm.get('title').touched">
+              The title is required.
+            </li>
+            <li class="text-danger" *ngIf="postForm.get('content').hasError('required') && postForm.get('content').touched">
+              The content is required.
+            </li>
+            <li class="text-danger" *ngIf="(postForm.get('content').hasError('minlength') || postForm.get('content').hasError('maxlength')) && postForm.get('content').touched">
+              The content must be between 10 and 250 characters.
+            </li>
+          </ul>
           <div class="form-group">
             <label>Post title</label>
-            <input type="text" class="form-control" name="title"  ngModel required #title="ngModel">
+            <input type="text" class="form-control" formControlName="title">
           </div>
           <div class="form-group">
             <label>Post content</label>
-            <textarea cols="5" rows="5" class="form-control" name="content" ngModel required #content="ngModel"></textarea>
+            <textarea cols="5" rows="5" class="form-control" formControlName="content"></textarea>
           </div>
           <div class="form-group text-center">
-            <button class="btn btn-info" type="submit" [disabled]="!form.valid">
+            <button class="btn btn-info" type="submit" [disabled]="postForm.invalid">
               Create Post
             </button>
           </div>
