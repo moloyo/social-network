@@ -1,0 +1,24 @@
+  <div>
+    <div class="panel panel-default">
+      <a class="panel-heading" (click)="isCollapsed = !isCollapsed">
+        Create Post
+      </a>
+      <div class="panel-body" *ngIf="!isCollapsed">
+        <form #form="ngForm" (ngSubmit)="createPost(form)" novalidate>
+          <div class="form-group">
+            <label>Post title</label>
+            <input type="text" class="form-control" name="title"  ngModel required #title="ngModel">
+          </div>
+          <div class="form-group">
+            <label>Post content</label>
+            <textarea cols="5" rows="5" class="form-control" name="content" ngModel required #content="ngModel"></textarea>
+          </div>
+          <div class="form-group text-center">
+            <button class="btn btn-info" type="submit" [disabled]="!form.valid">
+              Create Post
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -23,6 +23,9 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { WallComponent } from './profile/wall/wall.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { FollowComponent } from './profile/follow/follow.component';
+import { CreatePostComponent } from './post/create-post/create-post.component';
+import { LatestPostsComponent } from './post/latest-posts/latest-posts.component';
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { FollowComponent } from './profile/follow/follow.component';
     PrettyDatePipe,
     WallComponent,
     EditProfileComponent,
-    FollowComponent
+    FollowComponent,
+    CreatePostComponent,
+    LatestPostsComponent
   ],
   imports: [
     NgbModule,
@@ -51,7 +56,8 @@ import { FollowComponent } from './profile/follow/follow.component';
     AuthGuard,
     AuthedGuard,
     NotifyService,
-    UserService
+    UserService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

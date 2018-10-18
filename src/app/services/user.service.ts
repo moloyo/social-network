@@ -22,10 +22,6 @@ export class UserService {
     } else {
       return this.apiService.get<User>(`user/${userId}`).toPromise().then(response => {
         return response;
-      })
-      .catch((error: any) => {
-        this.notifyService.notify(`ERROR: ${error.status} ${error.name}. Detail: ${error.statusText}`, 'error', 10);
-        return undefined;
       });
     }
   }
@@ -37,11 +33,18 @@ export class UserService {
       this.notifyService.notify(`Profile Updated.`, 'success');
       this.userProfileUpdated.emit(response);
       return response;
-    })
-    .catch((error: any) => {
-      this.notifyService.notify(`ERROR: ${error.status} ${error.name}. Detail: ${error.statusText}`, 'error', 10);
-      return undefined;
     });
   }
 
+  isFollowing(id: number): Promise<boolean> {
+    return this.apiService.post<boolean>('user/is/following', { idUser: id }, true).toPromise();
+  }
+
+  follow(id: number) {
+    return this.apiService.post<void>('user/follow', { idUser: id }, true).toPromise();
+  }
+
+  unFollow(id: number) {
+    return this.apiService.post<void>('user/unfollow', { idUser: id }, true).toPromise();
+  }
 }
